@@ -6,6 +6,13 @@ import { Chevron } from './Icons'
 import ConceptDiagram from './diagrams/ConceptDiagram'
 import { DownloadLight } from './DownloadLink'
 
+// Render a bullet string, turning **word** into <strong>word</strong>.
+function withBold(text: string) {
+  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+    i % 2 === 1 ? <strong key={i}>{part}</strong> : part,
+  )
+}
+
 export default function ConceptCard({ concept }: { concept: Concept }) {
   const [open, setOpen] = useState(false)
   const pill = categoryColors[concept.category]
@@ -51,7 +58,7 @@ export default function ConceptCard({ concept }: { concept: Concept }) {
         {concept.diagram && <ConceptDiagram kind={concept.diagram} />}
         <ul className="points" style={{ marginTop: concept.diagram ? 14 : 0 }}>
           {concept.points.map((p, i) => (
-            <li key={i}>{p}</li>
+            <li key={i}>{withBold(p)}</li>
           ))}
         </ul>
         {concept.asset && <DownloadLight asset={concept.asset} />}

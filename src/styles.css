@@ -494,6 +494,10 @@ a {
 .points li:last-child {
   margin-bottom: 0;
 }
+.points strong {
+  color: #1d1f2b;
+  font-weight: 600;
+}
 .points li::before {
   content: '';
   position: absolute;

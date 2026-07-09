@@ -185,7 +185,7 @@ export default function Flashcards({ go }: { go: (v: View) => void }) {
                 color: '#8fdcf6',
               }}
             >
-              The takeaway
+              Answer
             </span>
             <div
               style={{
