@@ -63,4 +63,44 @@ export const glossary: GlossaryTerm[] = [
     definition:
       'Need for approval, emotional involvement, unsupportive beliefs, buy cycle, money tolerance, handling rejection.',
   },
+  {
+    term: 'Mirroring',
+    definition:
+      "Matching a prospect's pace, tone, and energy so they feel comfortable and understood.",
+  },
+  {
+    term: 'The Seesaw',
+    definition:
+      'Balancing a prospect’s energy — staying calm when they run hot — while mirroring what matters to them.',
+  },
+  {
+    term: 'DISC',
+    definition:
+      'A fast read of how someone communicates — Dominant, Influencer, Steady, Conscientious — so you can mirror and adapt.',
+  },
+  {
+    term: 'Dominant (D)',
+    definition:
+      "Decisive, controlling, no-fluff. Fears loss of control. Be brief, lead with ROI, and don't fear challenging them.",
+  },
+  {
+    term: 'Influencer (I)',
+    definition:
+      'Outgoing, funny, people-first. Fears social rejection. Let them talk, then use structure to keep them on track.',
+  },
+  {
+    term: 'Steady (S)',
+    definition:
+      'Reserved, loyal, change-averse. Fears disappointing others. Go slow and give them a map.',
+  },
+  {
+    term: 'Conscientious (C)',
+    definition:
+      'Analytical, precise, data-driven. Fears being wrong. Give data and space, tied to the decision.',
+  },
+  {
+    term: 'Rapport',
+    definition:
+      'The trust you build early by disarming a prospect and getting them talking; the edge is listening and adapting, not the small talk itself.',
+  },
 ]

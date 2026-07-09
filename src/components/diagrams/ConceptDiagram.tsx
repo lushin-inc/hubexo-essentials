@@ -196,6 +196,31 @@ function SixWeaknesses() {
   )
 }
 
+function DiscQuadrant() {
+  const tiles = [
+    { L: 'D', name: 'Dominant', desc: 'Task · fast', fear: 'Fears losing control', fg: '#b32636', bg: '#fce8ea' },
+    { L: 'I', name: 'Influencer', desc: 'People · fast', fear: 'Fears rejection', fg: '#a9720a', bg: '#fff2dc' },
+    { L: 'C', name: 'Conscientious', desc: 'Task · reserved', fear: 'Fears being wrong', fg: '#0045C2', bg: '#e5ecfb' },
+    { L: 'S', name: 'Steady', desc: 'People · reserved', fear: 'Fears letting people down', fg: '#0077a3', bg: '#e5f7fe' },
+  ]
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+      {tiles.map((t) => (
+        <div key={t.L} style={{ background: t.bg, borderRadius: 12, padding: '14px 16px' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+            <span style={{ fontSize: 22, fontWeight: 700, color: t.fg }}>{t.L}</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#1d1f2b' }}>{t.name}</span>
+          </div>
+          <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '.05em', textTransform: 'uppercase', color: '#5b6070', marginTop: 6 }}>
+            {t.desc}
+          </div>
+          <div style={{ fontSize: 12, color: t.fg, marginTop: 5 }}>{t.fear}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function ConceptDiagram({ kind }: { kind: DiagramKind }) {
   switch (kind) {
     case 'successTriangle':
@@ -212,6 +237,8 @@ export default function ConceptDiagram({ kind }: { kind: DiagramKind }) {
       return <MoneyZone />
     case 'sixWeaknesses':
       return <SixWeaknesses />
+    case 'discQuadrant':
+      return <DiscQuadrant />
     default:
       return null
   }

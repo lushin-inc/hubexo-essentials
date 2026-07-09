@@ -1,4 +1,4 @@
-export type View = 'home' | 's1' | 's2' | 'cards' | 'glossary'
+export type View = 'home' | 's1' | 's2' | 's3' | 'cards' | 'glossary'
 
 export type Category =
   | 'Foundation'
@@ -17,6 +17,7 @@ export type DiagramKind =
   | 'buyerSeller'
   | 'moneyZone'
   | 'sixWeaknesses'
+  | 'discQuadrant'
 
 /** A downloadable asset. `file` is the filename inside public/templates/. */
 export interface Asset {
@@ -39,7 +40,7 @@ export interface Concept {
 
 export interface Session {
   /** Also used as the view id, e.g. 's1'. */
-  id: 's1' | 's2'
+  id: 's1' | 's2' | 's3'
   /** Ghost number shown on cards/banners, e.g. '01'. */
   number: string
   /** e.g. 'June 18'. */
@@ -65,7 +66,7 @@ export interface Session {
 }
 
 export interface Flashcard {
-  s: 1 | 2
+  s: 1 | 2 | 3
   category: Category
   concept: string
   prompt: string
