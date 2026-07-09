@@ -28,10 +28,12 @@ export interface Asset {
 export interface Concept {
   id: string
   category: Category
+  /** Rep-facing headline — the situation or outcome they actually care about. */
   title: string
-  summary: string
-  keyLine: string
-  body: string
+  /** The underlying Sandler concept name, shown small + muted under the headline. */
+  concept: string
+  /** Short, glanceable bullets in plain, down-to-earth language. */
+  points: string[]
   diagram?: DiagramKind
   asset?: Asset
   /** Span both columns of the concept grid. */

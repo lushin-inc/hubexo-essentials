@@ -41,7 +41,7 @@ export default function ConceptCard({ concept }: { concept: Concept }) {
             {concept.category}
           </span>
           <div className="concept-title">{concept.title}</div>
-          <div className="concept-summary">{concept.summary}</div>
+          <div className="concept-tag">{concept.concept}</div>
         </div>
         <Chevron />
       </div>
@@ -49,8 +49,11 @@ export default function ConceptCard({ concept }: { concept: Concept }) {
       <div className="cd">
         <div className="cd-divider" />
         {concept.diagram && <ConceptDiagram kind={concept.diagram} />}
-        <div className="key-line">{concept.keyLine}</div>
-        <p className="concept-body">{concept.body}</p>
+        <ul className="points" style={{ marginTop: concept.diagram ? 14 : 0 }}>
+          {concept.points.map((p, i) => (
+            <li key={i}>{p}</li>
+          ))}
+        </ul>
         {concept.asset && <DownloadLight asset={concept.asset} />}
       </div>
     </div>
