@@ -103,4 +103,29 @@ export const glossary: GlossaryTerm[] = [
     definition:
       'The trust you build early by disarming a prospect and getting them talking; the edge is listening and adapting, not the small talk itself.',
   },
+  {
+    term: 'Mismatched Expectations',
+    definition:
+      'The root of most stalled deals: buyer and seller wanting different things from the meeting.',
+  },
+  {
+    term: 'Time · Agenda · Outcome',
+    definition:
+      "The three parts of an up-front contract — how long you'll meet, what you'll cover, and what you'll decide at the end.",
+  },
+  {
+    term: 'Equal Business Stature',
+    definition:
+      'Treating buyer and seller as equals — adult to adult — so the conversation is honest, not a game.',
+  },
+  {
+    term: 'Go/No-Go Call',
+    definition:
+      "A decision call that asks the prospect to confirm yes or no, with an easy opt-out, so deals don't stall.",
+  },
+  {
+    term: 'Hamster Wheel Selling',
+    definition:
+      'Selling with no planned next step, so you keep chasing. The fix: always book the next meeting.',
+  },
 ]

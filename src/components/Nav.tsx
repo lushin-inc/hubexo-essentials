@@ -1,5 +1,9 @@
 import type { View } from '../types'
 
+// Where the "Lessons Learned & Wins" button points. Change here if the form
+// link ever moves.
+const LESSONS_FORM_URL = 'https://tinyurl.com/HubexoLushin'
+
 export default function Nav({ go }: { go: (v: View) => void }) {
   return (
     <div className="nav">
@@ -18,6 +22,14 @@ export default function Nav({ go }: { go: (v: View) => void }) {
           <div className="nav-item" onClick={() => go('glossary')}>
             Glossary
           </div>
+          <a
+            className="nav-cta"
+            href={LESSONS_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Lessons Learned &amp; Wins
+          </a>
         </div>
       </div>
     </div>

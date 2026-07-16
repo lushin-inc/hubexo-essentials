@@ -132,6 +132,20 @@ a {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
+.nav-cta {
+  font-size: 13px;
+  font-weight: 600;
+  color: #141738;
+  background: var(--cyan);
+  padding: 8px 14px;
+  border-radius: 10px;
+  white-space: nowrap;
+  transition: background 0.18s ease;
+}
+.nav-cta:hover {
+  background: var(--cyan-hover);
+  color: #141738;
+}
 
 /* ---------- buttons ---------- */
 .btn-primary {

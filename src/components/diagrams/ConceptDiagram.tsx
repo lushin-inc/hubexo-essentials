@@ -221,6 +221,36 @@ function DiscQuadrant() {
   )
 }
 
+function UpfrontContract() {
+  const parts = [
+    { name: 'Time', desc: 'How long', accent: false },
+    { name: 'Agenda', desc: 'What we cover', accent: false },
+    { name: 'Outcome', desc: 'What we decide', accent: true },
+  ]
+  return (
+    <div style={{ display: 'flex', gap: 8 }}>
+      {parts.map((p) => (
+        <div
+          key={p.name}
+          style={{
+            flex: 1,
+            textAlign: 'center',
+            borderRadius: 12,
+            padding: '16px 10px',
+            background: p.accent ? '#00ADED' : '#f7f8fc',
+            border: p.accent ? '1px solid #00ADED' : '1px solid #eef0f6',
+          }}
+        >
+          <div style={{ fontSize: 14, fontWeight: 700, color: p.accent ? '#fff' : '#21245C' }}>{p.name}</div>
+          <div style={{ fontSize: 11.5, marginTop: 4, color: p.accent ? 'rgba(255,255,255,.85)' : '#5b6070' }}>
+            {p.desc}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function ConceptDiagram({ kind }: { kind: DiagramKind }) {
   switch (kind) {
     case 'successTriangle':
@@ -239,6 +269,8 @@ export default function ConceptDiagram({ kind }: { kind: DiagramKind }) {
       return <SixWeaknesses />
     case 'discQuadrant':
       return <DiscQuadrant />
+    case 'upfrontContract':
+      return <UpfrontContract />
     default:
       return null
   }

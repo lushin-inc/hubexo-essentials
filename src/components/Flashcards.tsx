@@ -5,12 +5,12 @@ import { categoryColors } from '../data/categories'
 import { DownloadDark } from './DownloadLink'
 import BackLink from './BackLink'
 
-type Deck = 'all' | 's1' | 's2' | 's3'
+type Deck = 'all' | 's1' | 's2' | 's3' | 's4'
 
 function deckIndices(deck: Deck): number[] {
   const all = flashcards.map((_, i) => i)
   if (deck === 'all') return all
-  const n = deck === 's1' ? 1 : deck === 's2' ? 2 : 3
+  const n = deck === 's1' ? 1 : deck === 's2' ? 2 : deck === 's3' ? 3 : 4
   return all.filter((i) => flashcards[i].s === n)
 }
 
@@ -106,6 +106,7 @@ export default function Flashcards({ go }: { go: (v: View) => void }) {
           {seg('Session 1', 's1')}
           {seg('Session 2', 's2')}
           {seg('Session 3', 's3')}
+          {seg('Session 4', 's4')}
         </div>
         <button className="shuffle" onClick={shuffle}>
           ⇄ Shuffle
