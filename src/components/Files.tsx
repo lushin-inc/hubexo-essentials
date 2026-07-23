@@ -38,7 +38,7 @@ export default function Files({ go }: { go: (v: View) => void }) {
   return (
     <div className="rise-view">
       <BackLink onClick={() => go('home')} style={{ padding: '28px 0 4px' }} />
-      <div style={{ fontSize: 34, fontWeight: 600, color: '#fff', margin: '14px 0 8px', letterSpacing: '-.015em' }}>
+      <div className="view-title" style={{ margin: '14px 0 8px' }}>
         Files
       </div>
 

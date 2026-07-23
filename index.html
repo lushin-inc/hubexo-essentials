@@ -8,6 +8,17 @@
       name="description"
       content="The core Sandler methodology, in one place — concept cards, flashcards, and a glossary for the Hubexo Essentials training."
     />
+    <script>
+      // Apply the saved theme before first paint (default light) to avoid a flash.
+      (function () {
+        try {
+          var t = localStorage.getItem('hx-theme') || 'light'
+          document.documentElement.setAttribute('data-theme', t)
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

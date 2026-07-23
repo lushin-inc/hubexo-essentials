@@ -98,9 +98,7 @@ export default function Flashcards({ go }: { go: (v: View) => void }) {
           marginBottom: 24,
         }}
       >
-        <div style={{ fontSize: 34, fontWeight: 600, color: '#fff', letterSpacing: '-.015em' }}>
-          Flashcards
-        </div>
+        <div className="view-title">Flashcards</div>
         <div className="seg-wrap">
           {seg('All', 'all')}
           {seg('Session 1', 's1')}
@@ -221,16 +219,14 @@ export default function Flashcards({ go }: { go: (v: View) => void }) {
         <div className="progress-track">
           <div className="progress-fill" style={{ width: progressPct }} />
         </div>
-        <div style={{ fontSize: 13, fontWeight: 600, color: '#aeb3d8', minWidth: 56, textAlign: 'center' }}>
+        <div className="fc-counter">
           {idx} / {total}
         </div>
         <button className="fnav" onClick={next} aria-label="Next card">
           →
         </button>
       </div>
-      <div style={{ textAlign: 'center', fontSize: 12, color: '#7f84b8', marginTop: 16 }}>
-        Use ← → to move · space to flip
-      </div>
+      <div className="fc-hint">Use ← → to move · space to flip</div>
     </div>
   )
 }

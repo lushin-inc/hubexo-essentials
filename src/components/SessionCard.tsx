@@ -9,7 +9,6 @@ export default function SessionCard({
   session: Session
   onOpen: () => void
 }) {
-  const ghostColor = session.accent ? 'rgba(0,173,237,.85)' : 'rgba(255,255,255,.16)'
   const onKey = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
@@ -28,9 +27,7 @@ export default function SessionCard({
         <SessionThumb session={session} />
       </div>
       <div className="session-body">
-        <div className="ghost-num" style={{ color: ghostColor }}>
-          {session.number}
-        </div>
+        <div className="ghost-num">{session.number}</div>
         <div style={{ flex: 1 }}>
           <div className="eyebrow">
             {session.date} · {session.label}

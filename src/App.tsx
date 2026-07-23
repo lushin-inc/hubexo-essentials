@@ -9,12 +9,34 @@ import Glossary from './components/Glossary'
 import Files from './components/Files'
 import CheatSheet from './components/CheatSheet'
 
+type Theme = 'light' | 'dark'
+
 export default function App() {
   const [view, setView] = useState<View>('home')
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+    } catch {
+      return 'light'
+    }
+  })
 
   const go = useCallback((v: View) => {
     setView(v)
     window.scrollTo(0, 0)
+  }, [])
+
+  const toggleTheme = useCallback(() => {
+    setTheme((t) => {
+      const next: Theme = t === 'light' ? 'dark' : 'light'
+      document.documentElement.setAttribute('data-theme', next)
+      try {
+        localStorage.setItem('hx-theme', next)
+      } catch {
+        /* ignore */
+      }
+      return next
+    })
   }, [])
 
   const s1 = sessions.find((s) => s.id === 's1')!
@@ -24,7 +46,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Nav go={go} />
+      <Nav go={go} theme={theme} onToggleTheme={toggleTheme} />
       <div className="wrap">
         {view === 'home' && <Home go={go} />}
         {view === 's1' && <SessionView session={s1} go={go} />}

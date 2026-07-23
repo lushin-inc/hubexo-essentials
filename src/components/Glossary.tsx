@@ -15,45 +15,18 @@ export default function Glossary({ go }: { go: (v: View) => void }) {
   return (
     <div className="rise-view">
       <BackLink onClick={() => go('home')} style={{ padding: '28px 0 4px' }} />
-      <div
-        style={{
-          fontSize: 34,
-          fontWeight: 600,
-          color: '#fff',
-          margin: '14px 0 24px',
-          letterSpacing: '-.015em',
-        }}
-      >
+      <div className="view-title" style={{ margin: '14px 0 24px' }}>
         Glossary
       </div>
 
-      <div
-        style={{
-          background: 'rgba(255,255,255,.04)',
-          border: '1px solid rgba(255,255,255,.09)',
-          borderRadius: 24,
-          padding: '32px 34px',
-          marginBottom: 72,
-        }}
-      >
+      <div className="gloss-panel">
         <input
-          className="in-dark"
+          className="in-dark gloss-input"
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search terms, e.g. pain, cookbook, decision…"
           aria-label="Search glossary terms"
-          style={{
-            width: '100%',
-            background: 'rgba(255,255,255,.06)',
-            border: '1px solid rgba(255,255,255,.14)',
-            borderRadius: 14,
-            padding: '14px 16px',
-            color: '#fff',
-            fontSize: 15,
-            outline: 'none',
-            marginBottom: 10,
-          }}
         />
         <div>
           {rows.map((t) => (
@@ -63,9 +36,7 @@ export default function Glossary({ go }: { go: (v: View) => void }) {
             </div>
           ))}
           {rows.length === 0 && (
-            <div style={{ padding: '18px 0 4px', fontSize: 13.5, color: '#8f94c4' }}>
-              No terms match that search.
-            </div>
+            <div className="gloss-none">No terms match that search.</div>
           )}
         </div>
       </div>

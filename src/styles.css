@@ -1,25 +1,67 @@
 /* ============================================================
    Hubexo Essentials — global styles
-   Design tokens, animation mechanics, and :hover / :focus states.
-   Layout lives inline in the components to mirror the prototype
-   1:1; this file handles the things inline styles can't express.
+   Colors flow through theme variables switched by data-theme on
+   <html> (default light). White content cards and navy graphic
+   panels stay the same in both themes; only the "chrome" (page bg,
+   nav, titles, translucent panels, on-page text) changes.
    ============================================================ */
 
 :root {
-  --bg1: #141738;
-  --bg2: #1b1f4d;
-  --bg3: #171b40;
-  --navy: #21245c;
   --cyan: #00aded;
   --cyan-hover: #4cc6f2;
   --cyan-accent: #8fdcf6;
   --action: #0045c2;
   --teal: #0077a3;
-  --panel: #f7f8fc;
+  --navy: #21245c;
   --hair: #eef0f6;
 
   --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
     'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+/* ---------- LIGHT theme (default) ---------- */
+:root,
+:root[data-theme='light'] {
+  --page-bg: linear-gradient(180deg, #edf0f9 0%, #e3e8f4 55%, #edf0f9 100%);
+  --ink: #1d1f2b;
+  --ink-2: #4a4e63;
+  --ink-3: #8a90a8;
+  --panel: #ffffff;
+  --panel-2: #f0f3fa;
+  --line: rgba(20, 24, 60, 0.1);
+  --line-2: rgba(20, 24, 60, 0.18);
+  --nav-bg: rgba(255, 255, 255, 0.82);
+  --nav-border: rgba(20, 24, 60, 0.08);
+  --field-bg: #ffffff;
+  --field-border: rgba(20, 24, 60, 0.16);
+  --placeholder: #9aa0b4;
+  --chip-bg: #eef1f8;
+  --chip-border: rgba(20, 24, 60, 0.1);
+  --chip-text: #4a4e63;
+  --ghost: rgba(33, 36, 92, 0.13);
+  --file-icon: #0077a3;
+}
+
+/* ---------- DARK theme ---------- */
+:root[data-theme='dark'] {
+  --page-bg: linear-gradient(180deg, #141738 0%, #1b1f4d 55%, #171b40 100%);
+  --ink: #ffffff;
+  --ink-2: #c3c7e8;
+  --ink-3: #7f84b8;
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel-2: rgba(255, 255, 255, 0.07);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-2: rgba(255, 255, 255, 0.16);
+  --nav-bg: rgba(18, 21, 52, 0.72);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --field-bg: rgba(255, 255, 255, 0.06);
+  --field-border: rgba(255, 255, 255, 0.14);
+  --placeholder: #8388b5;
+  --chip-bg: rgba(255, 255, 255, 0.07);
+  --chip-border: rgba(255, 255, 255, 0.09);
+  --chip-text: #c3c7e8;
+  --ghost: rgba(255, 255, 255, 0.16);
+  --file-icon: #8fdcf6;
 }
 
 * {
@@ -38,8 +80,8 @@ body {
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--bg1);
-  color: #fff;
+  background: var(--page-bg);
+  color: var(--ink);
 }
 
 a {
@@ -49,13 +91,21 @@ a {
 
 .app {
   min-height: 100vh;
-  background: linear-gradient(180deg, #141738 0%, #1b1f4d 55%, #171b40 100%);
+  background: var(--page-bg);
 }
 
 .wrap {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 40px;
+}
+
+/* View titles (Flashcards / Glossary / Files) */
+.view-title {
+  font-size: 34px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.015em;
 }
 
 /* ---------- entrance animation ---------- */
@@ -78,13 +128,13 @@ a {
 
 /* ---------- top nav ---------- */
 .nav {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--nav-border);
   position: sticky;
   top: 0;
   z-index: 20;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  background: rgba(18, 21, 52, 0.72);
+  background: var(--nav-bg);
 }
 .nav-inner {
   max-width: 1080px;
@@ -106,31 +156,32 @@ a {
 .wordmark {
   font-size: 15px;
   font-weight: 600;
-  color: #fff;
+  color: var(--ink);
   letter-spacing: 0.01em;
   cursor: pointer;
 }
 .wordmark-sub {
-  color: #7f84b8;
+  color: var(--ink-3);
   font-weight: 500;
 }
 .nav-links {
   margin-left: auto;
   display: flex;
+  align-items: center;
   gap: 6px;
 }
 .nav-item {
   font-size: 13px;
   font-weight: 500;
-  color: #c3c7e8;
+  color: var(--ink-2);
   padding: 8px 14px;
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease;
 }
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: var(--panel-2);
+  color: var(--ink);
 }
 .nav-cta {
   font-size: 13px;
@@ -145,6 +196,24 @@ a {
 .nav-cta:hover {
   background: var(--cyan-hover);
   color: #141738;
+}
+.theme-toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ink-2);
+  background: transparent;
+  border: none;
+  flex: 0 0 auto;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.theme-toggle:hover {
+  background: var(--panel-2);
+  color: var(--ink);
 }
 
 /* ---------- buttons ---------- */
@@ -166,8 +235,8 @@ a {
 .btn-outline {
   font-size: 13.5px;
   font-weight: 600;
-  color: #c3c7e8;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--ink-2);
+  border: 1px solid var(--line-2);
   padding: 12px 20px;
   border-radius: 12px;
   cursor: pointer;
@@ -176,8 +245,8 @@ a {
   transition: background 0.18s ease, color 0.18s ease;
 }
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: #fff;
+  background: var(--panel-2);
+  color: var(--ink);
 }
 
 /* ---------- home hero ---------- */
@@ -194,7 +263,7 @@ a {
   font-size: 52px;
   line-height: 1.04;
   font-weight: 600;
-  color: #fff;
+  color: var(--ink);
   letter-spacing: -0.025em;
 }
 .hero-btns {
@@ -207,7 +276,7 @@ a {
   height: 280px;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------- section label ---------- */
@@ -216,7 +285,7 @@ a {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #7f84b8;
+  color: var(--ink-3);
   margin-bottom: 18px;
 }
 
@@ -232,18 +301,18 @@ a {
 }
 .session-card.accent {
   border: 1px solid rgba(0, 173, 237, 0.35);
-  background: rgba(0, 173, 237, 0.06);
+  background: rgba(0, 173, 237, 0.08);
 }
 .session-card.accent:hover {
   border-color: rgba(0, 173, 237, 0.6);
-  background: rgba(0, 173, 237, 0.1);
+  background: rgba(0, 173, 237, 0.14);
 }
 .session-card.plain {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  background: var(--panel);
 }
 .session-card.plain:hover {
-  background: rgba(255, 255, 255, 0.055);
+  background: var(--panel-2);
 }
 .session-rail {
   width: 172px;
@@ -263,18 +332,22 @@ a {
   font-weight: 700;
   line-height: 0.85;
   letter-spacing: -0.03em;
+  color: var(--ghost);
+}
+.session-card.accent .ghost-num {
+  color: rgba(0, 173, 237, 0.85);
 }
 .eyebrow {
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #7f84b8;
+  color: var(--ink-3);
 }
 .session-title {
   font-size: 25px;
   font-weight: 600;
-  color: #fff;
+  color: var(--ink);
   margin-top: 5px;
   letter-spacing: -0.01em;
 }
@@ -286,15 +359,15 @@ a {
 }
 .chip {
   font-size: 11.5px;
-  color: #c3c7e8;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--chip-text);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
   border-radius: 20px;
   padding: 5px 11px;
 }
 .chip-more {
   font-size: 11.5px;
-  color: #8f94c4;
+  color: var(--ink-3);
   padding: 5px 4px;
 }
 .concept-count {
@@ -305,7 +378,7 @@ a {
   margin-top: 6px;
 }
 
-/* ---------- session thumbnail / banner fallbacks ---------- */
+/* ---------- session thumbnail / banner fallbacks (navy graphics) ---------- */
 .thumb-fallback {
   position: absolute;
   inset: 0;
@@ -335,12 +408,12 @@ a {
   gap: 7px;
   font-size: 13px;
   font-weight: 500;
-  color: #aeb3d8;
+  color: var(--ink-2);
   cursor: pointer;
   transition: color 0.18s ease;
 }
 .backlink:hover {
-  color: #fff;
+  color: var(--ink);
 }
 
 .banner {
@@ -349,7 +422,7 @@ a {
   border-radius: 24px;
   overflow: hidden;
   margin-bottom: 28px;
-  box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.5);
 }
 .banner-fallback {
   position: absolute;
@@ -401,7 +474,7 @@ a {
   letter-spacing: -0.015em;
 }
 
-/* ---------- concept grid + cards ---------- */
+/* ---------- concept grid + cards (white cards in both themes) ---------- */
 .concept-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -565,8 +638,8 @@ a {
 .seg-wrap {
   display: flex;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: 4px;
 }
@@ -578,7 +651,7 @@ a {
   cursor: pointer;
   border: none;
   background: transparent;
-  color: #c3c7e8;
+  color: var(--ink-2);
   font-family: inherit;
   transition: background 0.18s ease, color 0.18s ease;
 }
@@ -593,8 +666,8 @@ a {
   gap: 7px;
   font-size: 13px;
   font-weight: 600;
-  color: #c3c7e8;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--ink-2);
+  border: 1px solid var(--line-2);
   padding: 9px 15px;
   border-radius: 11px;
   cursor: pointer;
@@ -603,8 +676,8 @@ a {
   transition: background 0.18s ease, color 0.18s ease;
 }
 .shuffle:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: #fff;
+  background: var(--panel-2);
+  color: var(--ink);
 }
 .fcard {
   perspective: 1800px;
@@ -639,25 +712,25 @@ a {
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--line-2);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #c3c7e8;
+  color: var(--ink-2);
   font-size: 20px;
   background: transparent;
   transition: background 0.18s ease, color 0.18s ease;
   flex: 0 0 auto;
 }
 .fnav:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: var(--panel-2);
+  color: var(--ink);
 }
 .progress-track {
   flex: 1;
   height: 6px;
-  background: rgba(255, 255, 255, 0.09);
+  background: var(--line);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -667,33 +740,69 @@ a {
   border-radius: 3px;
   transition: width 0.35s ease;
 }
+.fc-counter {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  min-width: 56px;
+  text-align: center;
+}
+.fc-hint {
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 16px;
+}
 
 /* ---------- glossary ---------- */
 .in-dark {
   font-family: inherit;
 }
 .in-dark::placeholder {
-  color: #8388b5;
+  color: var(--placeholder);
 }
 .in-dark:focus {
   border-color: var(--cyan) !important;
+}
+.gloss-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 32px 34px;
+  margin-bottom: 72px;
+}
+.gloss-input {
+  width: 100%;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  color: var(--ink);
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 10px;
 }
 .gloss-row {
   display: grid;
   grid-template-columns: 210px 1fr;
   gap: 20px;
   padding: 15px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid var(--line);
 }
 .gloss-term {
   font-size: 14.5px;
   font-weight: 600;
-  color: #fff;
+  color: var(--ink);
 }
 .gloss-def {
   font-size: 13.5px;
-  color: #aab0d6;
+  color: var(--ink-2);
   line-height: 1.5;
+}
+.gloss-none {
+  padding: 18px 0 4px;
+  font-size: 13.5px;
+  color: var(--ink-3);
 }
 
 /* ---------- files ---------- */
@@ -706,8 +815,8 @@ a {
   display: flex;
   align-items: center;
   gap: 18px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: 18px;
   padding: 18px 20px;
   transition: background 0.2s ease, border-color 0.2s ease;
@@ -716,8 +825,8 @@ a {
   cursor: pointer;
 }
 .file-card-btn:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.16);
+  background: var(--panel-2);
+  border-color: var(--line-2);
 }
 .file-icon {
   width: 46px;
@@ -728,16 +837,16 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #8fdcf6;
+  color: var(--file-icon);
 }
 .file-title {
   font-size: 16px;
   font-weight: 600;
-  color: #fff;
+  color: var(--ink);
 }
 .file-desc {
   font-size: 13px;
-  color: #aab0d6;
+  color: var(--ink-2);
   margin-top: 3px;
   line-height: 1.45;
 }
@@ -758,14 +867,14 @@ a {
   color: #141738;
 }
 
-/* ---------- cheat sheet ---------- */
+/* ---------- cheat sheet (white sheet in both themes) ---------- */
 .sheet {
   max-width: 760px;
   margin: 14px auto 72px;
   background: #fff;
   border-radius: 24px;
   padding: 40px 44px;
-  box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.5);
 }
 .sheet-title {
   font-size: 28px;
@@ -815,66 +924,6 @@ a {
   line-height: 1.4;
   padding-top: 2px;
   font-weight: 500;
-}
-
-/* ---------- password gate ---------- */
-.gate-app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-.gate-card {
-  width: 100%;
-  max-width: 420px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 24px;
-  padding: 40px 36px;
-  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.6);
-}
-.gate-brand {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #fff;
-}
-.gate-title {
-  font-size: 26px;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: -0.015em;
-  margin-top: 26px;
-}
-.gate-sub {
-  font-size: 13.5px;
-  color: #aab0d6;
-  line-height: 1.55;
-  margin-top: 10px;
-}
-.gate-input {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 14px;
-  padding: 14px 16px;
-  color: #fff;
-  font-size: 15px;
-  outline: none;
-  margin-top: 22px;
-}
-.gate-err {
-  font-size: 13px;
-  color: #ff9ba6;
-  margin-top: 12px;
-}
-.gate-btn {
-  width: 100%;
-  margin-top: 16px;
-  padding: 14px 20px;
-  font-size: 14px;
 }
 
 /* ---------- responsive ---------- */
@@ -938,12 +987,14 @@ a {
   }
   .concept,
   .nav-item,
+  .theme-toggle,
   .btn-primary,
   .btn-outline,
   .session-card,
   .shuffle,
   .seg,
   .fnav,
+  .file-card,
   .dl-light,
   .dl-dark,
   .backlink {
@@ -952,7 +1003,6 @@ a {
   .concept:hover {
     transform: none !important;
   }
-  /* Keep expand + flip functional, just instantaneous. */
   .cd {
     transition: none !important;
   }
