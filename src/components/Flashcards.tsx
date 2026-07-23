@@ -140,17 +140,14 @@ export default function Flashcards({ go }: { go: (v: View) => void }) {
             </span>
             <div
               style={{
-                fontSize: 34,
+                fontSize: 27,
                 fontWeight: 600,
                 color: '#1d1f2b',
-                marginTop: 20,
-                letterSpacing: '-.02em',
-                lineHeight: 1.1,
+                marginTop: 22,
+                letterSpacing: '-.01em',
+                lineHeight: 1.28,
               }}
             >
-              {card.concept}
-            </div>
-            <div style={{ fontSize: 15, color: '#5b6070', marginTop: 14, lineHeight: 1.5 }}>
               {card.prompt}
             </div>
             <div

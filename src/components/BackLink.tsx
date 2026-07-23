@@ -4,9 +4,11 @@ import type { CSSProperties, KeyboardEvent } from 'react'
 export default function BackLink({
   onClick,
   style,
+  label = 'Sessions',
 }: {
   onClick: () => void
   style?: CSSProperties
+  label?: string
 }) {
   const onKey = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -23,7 +25,7 @@ export default function BackLink({
       role="button"
       tabIndex={0}
     >
-      <span style={{ fontSize: 16 }}>←</span> Sessions
+      <span style={{ fontSize: 16 }}>←</span> {label}
     </div>
   )
 }

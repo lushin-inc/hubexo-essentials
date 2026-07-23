@@ -1,4 +1,13 @@
-export type View = 'home' | 's1' | 's2' | 's3' | 's4' | 'cards' | 'glossary'
+export type View =
+  | 'home'
+  | 's1'
+  | 's2'
+  | 's3'
+  | 's4'
+  | 'cards'
+  | 'glossary'
+  | 'files'
+  | 'cheat'
 
 export type Category =
   | 'Foundation'

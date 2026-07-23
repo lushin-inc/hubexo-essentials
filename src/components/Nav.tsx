@@ -22,6 +22,9 @@ export default function Nav({ go }: { go: (v: View) => void }) {
           <div className="nav-item" onClick={() => go('glossary')}>
             Glossary
           </div>
+          <div className="nav-item" onClick={() => go('files')}>
+            Files
+          </div>
           <a
             className="nav-cta"
             href={LESSONS_FORM_URL}

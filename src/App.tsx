@@ -6,6 +6,8 @@ import Home from './components/Home'
 import SessionView from './components/SessionView'
 import Flashcards from './components/Flashcards'
 import Glossary from './components/Glossary'
+import Files from './components/Files'
+import CheatSheet from './components/CheatSheet'
 
 export default function App() {
   const [view, setView] = useState<View>('home')
@@ -31,6 +33,8 @@ export default function App() {
         {view === 's4' && <SessionView session={s4} go={go} />}
         {view === 'cards' && <Flashcards go={go} />}
         {view === 'glossary' && <Glossary go={go} />}
+        {view === 'files' && <Files go={go} />}
+        {view === 'cheat' && <CheatSheet go={go} />}
       </div>
     </div>
   )
