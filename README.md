@@ -27,25 +27,6 @@ npm run typecheck  # tsc --noEmit only
 
 ---
 
-## The access password
-
-The whole site sits behind a single shared password (same for everyone).
-
-- **It lives in one file:** [`src/config.ts`](src/config.ts). Change the one
-  string, then rebuild + redeploy. Nothing else needs to change.
-- The check is **case-insensitive** and ignores surrounding whitespace.
-- **Current value:** `SuccessTriangle`
-
-> ⚠️ This is a *light* gate for a static site, not real security. The password
-> ships inside the client bundle, so anyone determined enough can read it in the
-> page source. It keeps casual / uninvited visitors out — good enough for gating
-> training content, but don't put secrets behind it.
-
-Once someone enters the password it's remembered for that browser tab
-(`sessionStorage`), so they won't be re-prompted while clicking around.
-
----
-
 ## Adding a new session (≈ weekly)
 
 Everything is data-driven, so a new training is basically a copy-paste:
@@ -152,7 +133,6 @@ public/
   templates/            Cookbook.xlsx, Cash Machine.xlsx (download assets)
   .nojekyll             tells Pages not to run Jekyll
 src/
-  config.ts             ← the site password
   types.ts              shared types + the View union
   data/
     sessions.ts         ← session + concept content
@@ -162,10 +142,10 @@ src/
     images.ts           optional hero image source
   components/
     Nav, Home, SessionCard, SessionView, ConceptCard,
-    Flashcards, Glossary, PasswordGate, SessionBanner,
+    Flashcards, Glossary, SessionBanner,
     SessionThumb, HeroArt, BackLink, DownloadLink, Icons
     diagrams/ConceptDiagram.tsx   the inline concept visuals
-  App.tsx               view switching + password gate
+  App.tsx               view switching
   styles.css            design tokens, animations, hover + reduced-motion
 ```
 
